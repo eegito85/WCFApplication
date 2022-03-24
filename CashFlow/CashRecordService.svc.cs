@@ -13,22 +13,114 @@ namespace CashFlow
     {
         public string AddRecord(string description, int amount, string email)
         {
-            throw new NotImplementedException();
+            try
+            {
+                string conStr = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
+                SqlConnection con = new SqlConnection(conStr);
+                SqlCommand cmd = con.CreateCommand();
+                con.Open();
+
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "Insert into WCF_Finances values(@description,@amount,@email)";
+                cmd.Parameters.AddWithValue("@description", description);
+                cmd.Parameters.AddWithValue("@amount", amount);
+                cmd.Parameters.AddWithValue("@email", email);
+                cmd.ExecuteNonQuery();
+
+                con.Close();
+
+                return "Success";
+            }
+            catch
+            {
+                return "Error to insert record";
+            }
         }
 
         public string DeleteRecord(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                string conStr = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
+                SqlConnection con = new SqlConnection(conStr);
+                SqlCommand cmd = con.CreateCommand();
+                con.Open();
+
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "Delete from WCF_Finances where  Id = @id";
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.ExecuteNonQuery();
+
+                con.Close();
+
+                return "Success";
+            }
+            catch
+            {
+                return "Error to delete record";
+            }
         }
 
         public DataTable GetAllRecords(string email)
         {
-            throw new NotImplementedException();
+            try
+            {
+                string conStr = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
+                SqlConnection con = new SqlConnection(conStr);
+                SqlCommand cmd = con.CreateCommand();
+                con.Open();
+
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "Select * from WCF_Finances where  Email = @email";
+                cmd.Parameters.AddWithValue("@email", email);
+                cmd.ExecuteNonQuery();
+
+                DataTable dt = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+
+                int numberRecords = dt.Rows.Count;
+
+                con.Close();
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public string Login(string email, string password)
         {
-            throw new NotImplementedException();
+            string conStr = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
+            SqlConnection con = new SqlConnection(conStr);
+            SqlCommand cmd = con.CreateCommand();
+            con.Open();
+
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "Select * from WCF_Users where  Email = @email and Password = @password";
+            cmd.Parameters.AddWithValue("@email", email);
+            cmd.Parameters.AddWithValue("@password", password);
+            cmd.ExecuteNonQuery();
+
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+
+            var i = Convert.ToInt32(dt.Rows.Count.ToString());
+
+            if (i == 1)
+            {
+                con.Close();
+                return "Success";
+            }
+            else
+            {
+                con.Close();
+                return "Invalid email or password";
+            }
+
         }
 
         public string Register(string fullName, string email, string password)
@@ -69,9 +161,30 @@ namespace CashFlow
             }
         }
 
-        public string UpdateRecord(int id, string desc, int amount)
+        public string UpdateRecord(int id, string description, int amount)
         {
-            throw new NotImplementedException();
+            try
+            {
+                string conStr = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
+                SqlConnection con = new SqlConnection(conStr);
+                SqlCommand cmd = con.CreateCommand();
+                con.Open();
+
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "Update WCF_Finances set Description = @description, Amount = @amount  where  Id = @id";
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@description", description);
+                cmd.Parameters.AddWithValue("@amount", amount);
+                cmd.ExecuteNonQuery();
+
+                con.Close();
+
+                return "Success";
+            }
+            catch
+            {
+                return "Error to insert record";
+            }
         }
 
         private static string Encrypt(string value)
