@@ -50,6 +50,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -107,6 +109,13 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="CashPage.aspx" />
+    <None Include="Connected Services\CashRecordServiceReference\CashRecordService.disco" />
+    <None Include="Connected Services\CashRecordServiceReference\configuration91.svcinfo" />
+    <None Include="Connected Services\CashRecordServiceReference\configuration.svcinfo" />
+    <None Include="Connected Services\CashRecordServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -126,6 +135,17 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Connected Services\CashRecordServiceReference\CashRecordService.wsdl" />
+    <None Include="Connected Services\CashRecordServiceReference\CashRecordService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CashRecordServiceReference\CashRecordService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CashRecordServiceReference\CashRecordService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Properties\DataSources\System.Data.DataTable.datasource" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Login.aspx" />
     <Content Include="Register.aspx" />
@@ -179,6 +199,11 @@
     </Compile>
     <Compile Include="CashPage.aspx.designer.cs">
       <DependentUpon>CashPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\CashRecordServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
@@ -254,6 +279,12 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\CashRecordServiceReference\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

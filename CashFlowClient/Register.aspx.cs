@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using CashFlowClient.CashRecordServiceReference;
+using System;
 
 namespace CashFlowClient
 {
@@ -13,5 +9,20 @@ namespace CashFlowClient
         {
 
         }
+
+        protected void registerBtn_Click(object sender, EventArgs e)
+        {
+            CashRecordServiceClient client = new CashRecordServiceClient();
+            string result = client.Register(name.Value, email.Value, pwd.Value);
+            if (result == "Success")
+            {
+                resLbl.Text = "Registration is a success!";
+            }
+            else
+            {
+                resLbl.Text = result;
+            }
+        }
+
     }
 }

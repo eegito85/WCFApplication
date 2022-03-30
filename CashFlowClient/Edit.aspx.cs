@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CashFlowClient.CashRecordServiceReference;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,5 +14,12 @@ namespace CashFlowClient
         {
 
         }
+        protected void UpdateRecord_Click(object sender, EventArgs e)
+        {
+            CashRecordServiceClient client = new CashRecordServiceClient();
+            client.UpdateRecord(Convert.ToInt32(Request.QueryString["id"].ToString()), desc.Value, Convert.ToInt32(amount.Value));
+            Response.Redirect("~/CashPage.aspx");
+        }
+
     }
 }

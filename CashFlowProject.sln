@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashFlow", "CashFlow\CashFlow.csproj", "{0BC1C9CA-D6F1-44AC-BD77-BDD3EC028E7F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashFlowClient", "CashFlowClient\CashFlowClient.csproj", "{968C56D3-0CCE-4D2E-9DC2-09A55480CA11}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0BC1C9CA-D6F1-44AC-BD77-BDD3EC028E7F} = {0BC1C9CA-D6F1-44AC-BD77-BDD3EC028E7F}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
